@@ -3,10 +3,7 @@ package com.capstone.backend.entities;
 
 import com.capstone.backend.enums.Gender;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "users")
@@ -14,6 +11,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
+@Data
+@Builder
 public class User {
     @Id
     @Column(name = "user_id")
@@ -33,6 +32,7 @@ public class User {
     @Column(length = 1000)
     private String about;
 
+    @Column(name = "user_imageName")
     private String imageName;
 
 }

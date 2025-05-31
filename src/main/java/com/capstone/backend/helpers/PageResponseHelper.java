@@ -11,18 +11,17 @@ public class PageResponseHelper {
     private static final ModelMapper modelMapper = new ModelMapper();
 
     public static <U, V> PageableResponse<V> getPageableResponse(Page<U> page, Class<V> targetType) {
-        List<V> dtoList = page.getContent()
-                .stream()
-                .map(entity -> modelMapper.map(entity, targetType))
-                .collect(Collectors.toList());
+        List<U> entity = page.getContent();
+        List<V> dtoList = entity.stream().map(object -> new ModelMapper().map(object, targetType)).collect(Collectors.toList());
 
-        return PageableResponse.<V>builder()
-                .content(dtoList)
-                .pageNumber(page.getNumber())
-                .pageSize(page.getSize())
-                .totalElement(page.getTotalElements())
-                .totalPages(page.getTotalPages())
-                .lastPage(page.isLast())
-                .build();
+        PageableResponse<V> response = new PageableResponse<>();
+        response.setContent(dtoList);
+        response.setPageNumber(page.getNumber());
+        response.setPageSize(page.getSize());
+        response.setTotalElement(page.getTotalElements());
+        response.setTotalPages(page.getTotalPages());
+        response.setLastPage(page.isLast());
+
+        return response;
     }
 }

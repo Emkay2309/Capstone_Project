@@ -1,6 +1,5 @@
 package com.capstone.backend.dtos;
 
-
 import lombok.*;
 import org.springframework.http.HttpStatus;
 
@@ -9,9 +8,10 @@ import org.springframework.http.HttpStatus;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Data
-public class ApiResponseMessage {
-    private String message;
+public class ImageResponse {
+    private String imageName;
     private boolean success;
     private HttpStatus status;
+
 }
+

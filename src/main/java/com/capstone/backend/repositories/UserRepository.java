@@ -18,5 +18,7 @@ public interface UserRepository extends JpaRepository<User , String> {
     List<User> findByKeyword(@Param("keyword") String keyword);
 
     boolean existsByEmail(String email);
+    List<User> findByNameContaining(String keyword);
+    Optional<User> findByEmailAndPassword(String email , String password);
 }
 
